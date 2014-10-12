@@ -1,0 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'IDAlertController', :exclusive => true do
+  pod "IDAlertController", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "IDAlertController", :path => "../"
+
+  
+end
