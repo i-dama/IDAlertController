@@ -9,7 +9,29 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+------
+IDAlertController uses UIAlertController-like syntax:
+
+```Objective-C
+IDAlertController *alertController = [IDAlertController alertControllerWithTitle:@"Hello world" message:nil preferredStyle:IDAlertCsontrollerStyleActionSheet];
+    [alertController addActionWithTitle:@"Cancel" style:IDAlertActionStyleCancel handler:^(IDAlertAction *action) {
+        NSLog(@"Cancel");
+    }];
+    [alertController addActionWithTitle:@"Destructive" style:IDAlertActionStyleDestructive handler:^(IDAlertAction *action) {
+        NSLog(@"Destructive");
+    }];
+    [alertController addActionWithTitle:@"Option one" style:IDAlertActionStyleDefault handler:^(IDAlertAction *action) {
+        NSLog(@"Option one");
+    }];
+    [alertController addActionWithTitle:@"Option two" style:IDAlertActionStyleDefault handler:^(IDAlertAction *action) {
+        NSLog(@"Option two");
+    }];
+    [alertController show];
+
+```
+
 ## Requirements
+* ARC
 
 ## Installation
 

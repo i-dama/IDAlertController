@@ -1,0 +1,14 @@
+PODS:
+  - IDAlertController (0.1.0)
+
+DEPENDENCIES:
+  - IDAlertController (from `../`)
+
+EXTERNAL SOURCES:
+  IDAlertController:
+    :path: ../
+
+SPEC CHECKSUMS:
+  IDAlertController: 3b06db5688ee4aae53fa63eecbff21d487063f6c
+
+COCOAPODS: 0.34.1
