@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/i-dama/IDAlertController.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/DamaOfficial'
 
-  s.platform     = :ios, '7.0'
+  s.platform     = :ios, '6.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes'
