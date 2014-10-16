@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "IDAlertController"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "iOS7-safe AlertController"
   s.description      = <<-DESC
 
