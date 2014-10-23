@@ -126,6 +126,7 @@ static const char RetainSelfKey;
         objc_setAssociatedObject(action, &IDAlertActionKey, IDaction, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [alertController addAction:action];
     }
+    NSAssert(!(self.preferredStyle == IDAlertControllerStyleActionSheet && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && self.actionSheetOptions.count == 0), @"If you are using action sheet on iPad running iOS8 or higher make sure you specify a sourceView or a barButtonItem for presentation!");
     //set options if provided
     if(self.actionSheetOptions[IDAlertControllerActionSheetOptionSourceViewKey]){
         alertController.popoverPresentationController.sourceView = self.actionSheetOptions[IDAlertControllerActionSheetOptionSourceViewKey];
