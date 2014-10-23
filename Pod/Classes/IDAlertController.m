@@ -9,6 +9,10 @@
 #import "IDAlertController.h"
 #import <objc/runtime.h>
 
+NSString *const IDAlertControllerActionSheetOptionSourceViewKey = @"IDAlertControllerActionSheetOptionSourceViewKey";
+NSString *const IDAlertControllerActionSheetOptionSourceRectKey = @"IDAlertControllerActionSheetOptionSourceRectKey";
+NSString *const IDALertControllerActionSheetOptionBarButtonItemKey = @"IDALertControllerActionSheetOptionBarButtonItemKey";
+
 static const char IDAlertActionKey;
 static const char RetainSelfKey;
 
@@ -17,6 +21,7 @@ static const char RetainSelfKey;
 @property (nonatomic, strong) IDAlertAction *cancelAction;
 @property (nonatomic, strong) IDAlertAction *destructiveAction;
 @property(nonatomic, assign) IDAlertControllerStyle preferredStyle;
+@property (nonatomic, strong) NSDictionary *actionSheetOptions;
 @end
 
 @implementation IDAlertController
@@ -25,18 +30,16 @@ static const char RetainSelfKey;
 #pragma mark - Initialisation
 
 + (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message preferredStyle:(IDAlertControllerStyle)preferredStyle{
-    return [self alertControllerWithTitle:title message:message preferredStyle:preferredStyle actions:nil];
+    return [self alertControllerWithTitle:title message:message preferredStyle:preferredStyle actionSheetOptions:nil];
 }
 
-+ (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message preferredStyle:(IDAlertControllerStyle)preferredStyle actions:(NSArray *)actions{
++ (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message preferredStyle:(IDAlertControllerStyle)preferredStyle actionSheetOptions:(NSDictionary *)actionSheetOptions{
     IDAlertController *controller = [IDAlertController new];
     controller.title = title;
     controller.message = message;
     controller.preferredStyle = preferredStyle;
     controller._actions = [NSMutableArray array];
-    for(IDAlertAction *action in actions){
-        [controller addAction:action];
-    }
+    controller.actionSheetOptions = actionSheetOptions;
     return controller;
 }
 
@@ -46,6 +49,10 @@ static const char RetainSelfKey;
 
 - (void)addActionWithTitle:(NSString *)title style:(IDAlertActionStyle)style handler:(IDAlertActionHandlerBlock)handler{
     [self addAction:[IDAlertAction actionWithTitle:title style:style handler:handler]];
+}
+
+- (void)addCancelActionWithTitle:(NSString *)title{
+    [self addActionWithTitle:title style:IDAlertActionStyleCancel handler:nil];
 }
 
 - (void)addAction:(IDAlertAction *)action{
@@ -118,6 +125,16 @@ static const char RetainSelfKey;
         }];
         objc_setAssociatedObject(action, &IDAlertActionKey, IDaction, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [alertController addAction:action];
+    }
+    //set options if provided
+    if(self.actionSheetOptions[IDAlertControllerActionSheetOptionSourceViewKey]){
+        alertController.popoverPresentationController.sourceView = self.actionSheetOptions[IDAlertControllerActionSheetOptionSourceViewKey];
+    }
+    if(self.actionSheetOptions[IDAlertControllerActionSheetOptionSourceRectKey]){
+        alertController.popoverPresentationController.sourceRect = [self.actionSheetOptions[IDAlertControllerActionSheetOptionSourceRectKey] CGRectValue];
+    }
+    if(self.actionSheetOptions[IDALertControllerActionSheetOptionBarButtonItemKey]){
+        alertController.popoverPresentationController.barButtonItem = self.actionSheetOptions[IDALertControllerActionSheetOptionBarButtonItemKey];
     }
     return alertController;
 }

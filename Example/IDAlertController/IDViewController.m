@@ -39,10 +39,9 @@
 }
 
 - (IBAction)showActionSheet:(id)sender {
-    IDAlertController *alertController = [IDAlertController alertControllerWithTitle:@"Hello world" message:nil preferredStyle:IDAlertControllerStyleActionSheet];
-    [alertController addActionWithTitle:@"Cancel" style:IDAlertActionStyleCancel handler:^(IDAlertAction *action) {
-        NSLog(@"Cancel");
-    }];
+    UIButton *senderButton = (UIButton *)sender;
+    IDAlertController *alertController = [IDAlertController alertControllerWithTitle:@"Hello world" message:nil preferredStyle:IDAlertControllerStyleActionSheet actionSheetOptions:@{IDAlertControllerActionSheetOptionSourceViewKey : sender, IDAlertControllerActionSheetOptionSourceRectKey : [NSValue valueWithCGRect:CGRectMake(CGRectGetWidth(senderButton.frame)/2.0-1, CGRectGetHeight(senderButton.frame), 2, 2)]}];
+    [alertController addCancelActionWithTitle:@"Cancel"];
     [alertController addActionWithTitle:@"Destructive" style:IDAlertActionStyleDestructive handler:^(IDAlertAction *action) {
         NSLog(@"Destructive");
     }];
