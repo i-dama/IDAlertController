@@ -4,6 +4,8 @@
 [![License](https://img.shields.io/cocoapods/l/IDAlertController.svg?style=flat)](http://cocoadocs.org/docsets/IDAlertController)
 [![Platform](https://img.shields.io/cocoapods/p/IDAlertController.svg?style=flat)](http://cocoadocs.org/docsets/IDAlertController)
 
+iOS7-safe UIAlertController
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
