@@ -43,9 +43,7 @@ it, simply add the following line to your Podfile:
 
 ## Author
 
-Ivan Damjanović, ivan.damjanovic@infinum.hr
-
-[More cool stuff](http://www.infinum.co)
+Ivan Damjanović, ivan.damjanovic@number26.de
 
 ## License
 
